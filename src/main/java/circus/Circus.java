@@ -45,11 +45,37 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of animals " + calculateAssetValue(animals));
-        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+        System.out.println("Number of animals in the array: " + animals.length);
+        //animals[3] = new Elephant("Eli"); this doesn't work
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+
+        printAllAnimals(animalArrayList);
+        printNumberOfAnimals("Size of our animal arraylist" + animalArrayList.size());
+
+        Elephant strongOne = new Elephant("Strong One");
+        animalArrayList.add(strongOne);
+
+        printAllAnimals(animalArrayList);
+
+        System.out.println("size of our animal arraylist: " + animalArrayList.size());
+
+        System.out.println("StrongOne is in the position: " + (animalArrayList.indexOf(strongOne) + 1));
+
+        animalArrayList.sort(AnimalNameComparator);
+        printAllAnimals(animalArrayList);
+
+        //makeAnimalsTalk();
+        //System.out.println("Total value of animals " + calculateAssetValue(animals));
+        //System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+    }
+
     private static void printNumberOfAnimals(String animalArrayList) {
         System.out.println(animalArrayList);
     }
+
+    private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
+        for(Animal a : animalArrayList) {
+            System.out.println(a);
+        }
     }
 }
