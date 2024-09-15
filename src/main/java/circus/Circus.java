@@ -1,11 +1,12 @@
 package circus;
 
 import circus.animal.*;
+
+import circus.stuff.Cage;
 import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -44,6 +45,7 @@ public class Circus {
         return total;
     }
 
+
     public static void main(String[] args) {
         System.out.println("Number of animals in the array: " + animals.length);
         //animals[3] = new Elephant("Eli"); this doesn't work
@@ -53,6 +55,15 @@ public class Circus {
         printNumberOfAnimals("Size of our animal arraylist" + animalArrayList.size());
 
         Elephant strongOne = new Elephant("Strong One");
+
+
+        animalArrayList.add(new Tiger("Sherkhan"));
+        System.out.println("Number of animals: " + animalArrayList.size());
+
+        animalArrayList.add(new Parrot("harry"));
+
+        Duck louie = new Duck("Louie");
+        animalArrayList.add(louie);
         animalArrayList.add(strongOne);
 
         printAllAnimals(animalArrayList);
@@ -76,6 +87,20 @@ public class Circus {
     private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
         for(Animal a : animalArrayList) {
             System.out.println(a);
+
+        Cage<Duck> duckCage = new Cage<>();
+        Duck duck = new Duck("Henry");
+        duckCage.lockUp(duck);
+        Parrot parrot = new Parrot("Peter");
+        Cage<Parrot> parrotCage = new Cage<>();
+        parrotCage.lockUp(parrot);
+
+        ArrayList<Cage> cages = new ArrayList<>();
+        cages.add(duckCage);
+        cages.add(parrotCage);
+
+        for(Cage c: cages) {
+            c.release();
         }
     }
-}
+}}
